@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Conexión al servicio</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body>
+  <div class="min-h-screen flex items-center justify-center bg-gray-100">
+    <div class="max-w-md w-full p-8 bg-white shadow-lg rounded-lg">
+      <h1 class="text-2xl font-bold mb-6">¿Tienes diabetes_</h1>
+
+      <form id="prediction-form" class="mb-8">
+        <div class="mb-4">
+          <label for="embarazos" class="block text-sm font-medium text-gray-700">Embarazos:</label>
+          <input type="text" id="embarazos" name="embarazos" placeholder="Embarazos" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+        </div>
+
+        <div class="mb-4">
+          <label for="glucosa" class="block text-sm font-medium text-gray-700">Glucosa:</label>
+          <input type="text" id="glucosa" name="glucosa" placeholder="Glucosa" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+        </div>
+
+        <div class="mb-4">
+          <label for="presion" class="block text-sm font-medium text-gray-700">Presión Sanguínea:</label>
+          <input type="text" id="presion" name="presion" placeholder="Presión Sanguínea" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+        </div>
+
+        <div class="mb-4">
+          <label for="grosor-piel" class="block text-sm font-medium text-gray-700">Grosor de la Piel:</label>
+          <input type="text" id="grosor-piel" name="grosor_piel" placeholder="Grosor de la Piel" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+        </div>
+
+        <div class="mb-4">
+          <label for="insulina" class="block text-sm font-medium text-gray-700">Insulina:</label>
+          <input type="text" id="insulina" name="insulina" placeholder="Insulina" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+        </div>
+
+        <div class="mb-4">
+          <label for="imc" class="block text-sm font-medium text-gray-700">Índice de Masa Corporal:</label>
+          <input type="text" id="imc" name="imc" placeholder="Índice de Masa Corporal" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+        </div>
+
+        <div class="mb-4">
+          <label for="edad" class="block text-sm font-medium text-gray-700">Edad:</label>
+          <input type="text" id="edad" name="edad" placeholder="Edad" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+        </div>
+
+        <div>
+          <button type="submit" class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Enviar</button>
+        </div>
+      </form>
+
+      <div id="result-container" class="text-xl"></div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var predictionForm = document.getElementById('prediction-form');
+      var resultContainer = document.getElementById('result-container');
+
+      predictionForm.addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        var embarazos = document.getElementById('embarazos').value;
+        var glucosa = document.getElementById('glucosa').value;
+        var presion = document.getElementById('presion').value;
+        var grosorPiel = document.getElementById('grosor-piel').value;
+        var insulina = document.getElementById('insulina').value;
+        var imc = document.getElementById('imc').value;
+        var edad = document.getElementById('edad').value;
+
+        var userInput = embarazos + ',' + glucosa + ',' + presion + ',' + grosorPiel + ',' + insulina + ',' + imc + ',' + edad;
+        var url = '/predict?user_input=' + userInput;
+
+        fetch(url)
+          .then(function(response) {
+            return response.json();
+          })
+          .then(function(data) {
+            var result = data.result[0];
+
+            if (result === 1) {
+              resultContainer.textContent = 'Resultado de la predicción: Tiene diabetes';
+              resultContainer.classList.remove('text-green-500');
+              resultContainer.classList.add('text-red-500');
+            } else if (result === 0) {
+              resultContainer.textContent = 'Resultado de la predicción: No tiene diabetes';
+              resultContainer.classList.remove('text-red-500');
+              resultContainer.classList.add('text-green-500');
+            } else {
+              resultContainer.textContent = 'Resultado de la predicción: Valor desconocido';
+              resultContainer.classList.remove('text-red-500');
+              resultContainer.classList.remove('text-green-500');
+              resultContainer.classList.add('text-gray-500');
+            }
+          })
+          .catch(function(error) {
+            console.log('Error:', error);
+          });
+      });
+    });
+  </script>
+</body>
+</html>
