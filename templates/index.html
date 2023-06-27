@@ -1,47 +1,48 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Conexión al servicio</title>
+  <title>¿Tienes diabetes?</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
 <body>
   <div class="min-h-screen flex items-center justify-center bg-gray-100">
     <div class="max-w-md w-full p-8 bg-white shadow-lg rounded-lg">
-      <h1 class="text-2xl font-bold mb-6">¿Tienes diabetes_</h1>
+      <h1 class="text-2xl font-bold mb-6">¿Tienes diabetes?</h1>
 
       <form id="prediction-form" class="mb-8">
         <div class="mb-4">
-          <label for="embarazos" class="block text-sm font-medium text-gray-700">Embarazos:</label>
+          <label for="embarazos" class="block text-sm font-medium text-gray-700">Número de embarazos:</label>
           <input type="text" id="embarazos" name="embarazos" placeholder="Embarazos" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
         </div>
 
         <div class="mb-4">
-          <label for="glucosa" class="block text-sm font-medium text-gray-700">Glucosa:</label>
+          <label for="glucosa" class="block text-sm font-medium text-gray-700">Glucosa (mg/dL):</label>
           <input type="text" id="glucosa" name="glucosa" placeholder="Glucosa" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
         </div>
 
         <div class="mb-4">
-          <label for="presion" class="block text-sm font-medium text-gray-700">Presión Sanguínea:</label>
+          <label for="presion" class="block text-sm font-medium text-gray-700">Presión sanguínea (mmHg):</label>
           <input type="text" id="presion" name="presion" placeholder="Presión Sanguínea" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
         </div>
 
         <div class="mb-4">
-          <label for="grosor-piel" class="block text-sm font-medium text-gray-700">Grosor de la Piel:</label>
+          <label for="grosor-piel" class="block text-sm font-medium text-gray-700">Grosor de la piel (mm):</label>
           <input type="text" id="grosor-piel" name="grosor_piel" placeholder="Grosor de la Piel" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
         </div>
 
         <div class="mb-4">
-          <label for="insulina" class="block text-sm font-medium text-gray-700">Insulina:</label>
+          <label for="insulina" class="block text-sm font-medium text-gray-700">Insulina (mU/L):</label>
           <input type="text" id="insulina" name="insulina" placeholder="Insulina" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
         </div>
 
         <div class="mb-4">
-          <label for="imc" class="block text-sm font-medium text-gray-700">Índice de Masa Corporal:</label>
+          <label for="imc" class="block text-sm font-medium text-gray-700">Índice de masa corporal (kg/m²):</label>
           <input type="text" id="imc" name="imc" placeholder="Índice de Masa Corporal" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
         </div>
 
         <div class="mb-4">
-          <label for="edad" class="block text-sm font-medium text-gray-700">Edad:</label>
+          <label for="edad" class="block text-sm font-medium text-gray-700">Edad (años):</label>
           <input type="text" id="edad" name="edad" placeholder="Edad" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
         </div>
 
